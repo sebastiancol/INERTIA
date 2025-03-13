@@ -13,11 +13,20 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id','desc')->paginate(5);
+        //$users = User::orderBy('id','desc')->paginate(10);
+        $users = User::all();
+        //dd($users);
 
         return Inertia::render('User/Userget',[
-            'users'=>'$users'
+            'users'=>$users
         ]);
+
+        /*
+               return Inertia::render('User/Userget',[
+            'users'=> $users
+            
+            ]);
+        */
     }
 
 
