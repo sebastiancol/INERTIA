@@ -1,0 +1,129 @@
+  .container {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content:space-between;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    .item{
+
+    }
+
+    .itemb {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      justify-self: auto;
+      align-self: center;
+      
+    }
+  
+    .title {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      th, td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+      }
+  
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+
+  .tableuser{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content:space-between;
+  }
+
+  .form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-title {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+  }
+  
+  .form-input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .form-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .form-button:hover {
+    background-color: #0056b3;
+  }
+
+  /*@media (max-width: 768px) {
+    .form-title {
+      font-size: 1.5rem; 
+    }
+  
+    .form-input, .form-button {
+      font-size: 0.9rem; /
+      padding: 8px; 
+    }
+  } */
+  
+  @media (min-width: 400px ){
+
+    .container{
+      display: grid;
+      row-gap: 2PX;
+      column-gap: 3PX;
+      grid-template: auto auto auto auto;
+    }  
+  }
+
