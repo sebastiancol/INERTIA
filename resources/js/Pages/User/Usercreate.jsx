@@ -2,7 +2,7 @@ import { useState } from 'react';
 import '../../../css/User.css';
 //import axios from 'axios';
 
-export const USERCREATE = () => {
+const USERCREATE = () => {
 
   let [users,setUsers] = useState({})
 
@@ -191,3 +191,4 @@ export const USERCREATE = () => {
   )
 }
 
+export default USERCREATE;

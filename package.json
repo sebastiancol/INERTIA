@@ -14,9 +14,11 @@
         "@inertiajs/react": "^2.0.5",
         "@inertiajs/server": "^0.1.0",
         "@vitejs/plugin-react": "^4.3.4",
+        "bootstrap": "^5.3.3",
         "react": "^19.0.0",
         "react-devtools": "^6.1.1",
         "react-dom": "^19.0.0",
-        "react-doom": "^1.0.0"
+        "react-doom": "^1.0.0",
+        "react-router-dom": "^7.3.0"
     }
 }

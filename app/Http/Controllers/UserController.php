@@ -29,6 +29,11 @@ class UserController extends Controller
         */
     }
 
+    public function create ()
+    {
+        return Inertia::render('User/Usercreate');
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -61,6 +66,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('posts.index');
+        return redirect()->route('user_get');
     }
 }
