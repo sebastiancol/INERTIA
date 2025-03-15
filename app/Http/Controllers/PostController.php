@@ -13,7 +13,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Posts/Index', [
+        return Inertia::render('Post/PostGet', [
             'posts' => Post::all(),
         ]);
     }
@@ -23,7 +23,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Posts/Create');
+        return Inertia::render('Post/PostCreate');
     }
 
     /**
@@ -43,7 +43,7 @@ class PostController extends Controller
             'file_path' => $filePath,
         ]));
 
-        return redirect()->route('posts.index');
+        return redirect()->route('post_get');
     }
 
 
@@ -52,7 +52,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return Inertia::render('Posts/Edit', [
+        return Inertia::render('Post/PostEdit', [
             'post' => $post,
         ]);
     }
@@ -74,7 +74,7 @@ class PostController extends Controller
             'file_path' => $filePath,
         ]));
 
-        return redirect()->route('posts.index');
+        return redirect()->route('post_get');
     }
 
     /**
@@ -83,6 +83,6 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->route('posts.index');
+        return redirect()->route('post_get');
     }
 }

@@ -17,7 +17,6 @@ class PostSeeder extends Seeder
         DB::table('posts')->insert([
             'title' =>'titulo1',
             'content' =>'contenido',
-            'file_path' =>'',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);

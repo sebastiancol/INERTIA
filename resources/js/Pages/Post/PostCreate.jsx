@@ -10,29 +10,39 @@ export default function Create() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post('/posts');
+        post('/postget');
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
+        <div className=''>
+            <form onSubmit={handleSubmit}>
+            <div className=''>
                 <label>Title</label>
                 <input
+                    id="title"
                     type="text"
+                    className="form-control"
                     value={data.title}
                     onChange={(e) => setData('title', e.target.value)}
+                    placeholder="Titulo"
+                    pattern="[A,Z],[a,z]"
+                    required
                 />
                 {errors.title && <div>{errors.title}</div>}
             </div>
-            <div>
-                <label>Content</label>
+            <div className=''>
+                <label htmlFor="description" className="form-label">Description</label>
                 <textarea
+                    id="description"
+                    className="form-control"
                     value={data.content}
                     onChange={(e) => setData('content', e.target.value)}
+                    placeholder="Descripcion"
+                    required
                 ></textarea>
                 {errors.content && <div>{errors.content}</div>}
             </div>
-            <div>
+            <div className=''>
                 <label>File</label>
                 <input
                     type="file"
@@ -41,6 +51,8 @@ export default function Create() {
                 {errors.file && <div>{errors.file}</div>}
             </div>
             <button type="submit">Create</button>
-        </form>
+            </form>
+        </div>
+        
     );
 }

@@ -19,8 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('/users',[UserController::class,'index'])->name('users');
-//Route::resource('/posts', PostController::class);
 
 Route::controller(UserController::class)->group( function(){
     Route::get('userget',  'index')->name('user_get');
@@ -42,5 +40,3 @@ Route::controller(PostController::class)->group( function(){
     Route::get('cancel','cancel')->name('cancel');
 });
 
-
-//Route::inertia('/users','User');

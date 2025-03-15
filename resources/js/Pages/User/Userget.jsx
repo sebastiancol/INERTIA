@@ -20,6 +20,8 @@ const User = ({users}) =>{
                                 </div>
                             </form>
                         </div>
+                        <div className='row md-6'>
+
                             <table className='table text-center text-uppercase table-bordered'>
                                 <thead>
                                     <tr>
@@ -68,8 +70,6 @@ const User = ({users}) =>{
                                     
                                 </tbody>
                             </table>
-                        <div className='row md-12'>
-
                         </div>
 
                     </div>
