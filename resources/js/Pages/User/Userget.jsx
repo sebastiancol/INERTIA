@@ -1,5 +1,7 @@
 import React from 'react';
 import '../../../css/User.css';
+import { Link } from "@inertiajs/react";
+
 
 const User = ({users}) =>{
         
@@ -14,11 +16,20 @@ const User = ({users}) =>{
                         <div className='row md-6'>
                             <form  method="GET">
                                 <div className="form-control ">
-                                <input type="text" className="form-control"  name="busqueda" placeholder="buscar usuario" />
-                                <br/>
-                                <input type="submit" className="btn btn-primary" name="buscador"/>
+                                    <input type="text" className="form-control"  name="busqueda" placeholder="buscar usuario" />
+                                    <br/>
+                                    <input type="submit" className="btn btn-primary" name="buscador"/>
+                                    <br/>
                                 </div>
                             </form>
+                            <button type="button" className="btn btn-create" >
+                               
+                                <Link href={route('user_create')} className="">
+                                    Crear Usuario
+                                </Link>
+                               
+                            </button>
+                                
                         </div>
                         <div className='row md-6'>
 
@@ -38,8 +49,11 @@ const User = ({users}) =>{
                                             <td>{user.name}</td>
                                             <td>{user.email}</td>
                                             <td>
-                                                <button type="button" className="btn btn-primary btn-">
-                                                    <a className="" href="{{ route('user_edit', $item->id) }}">EDITAR<i className="fa fa-pencil-square" aria-hidden="true"></i></a>
+                                                <button type="button" className="btn btn-secondary">
+                                                    
+                                                    <Link href={route('user_update',user.id)} className="btn btn-primary mb-3">
+                                                       EDITAR<i className="fa fa-pencil-square" aria-hidden="true"></i>
+                                                    </Link>
                                                 </button>
                                                 
                                                 <button type="button" className="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteTicket" id="delete">
@@ -57,7 +71,7 @@ const User = ({users}) =>{
                                                             <div className="modal-footer">
                                                                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
                                                                 <button type="button" className="btn btn-primary">
-                                                                    <a className="" href="">CONFIRMAR<i className="fa fa-pencil-square" aria-hidden="true"></i></a>
+                                                                    <a className="" href={route('user_delete',user.id)}>CONFIRMAR<i className="fa fa-pencil-square" aria-hidden="true"></i></a>
                                                                 </button>
                                                             </div>
                                                         </div>

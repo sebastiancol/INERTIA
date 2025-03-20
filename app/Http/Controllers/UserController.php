@@ -33,7 +33,7 @@ class UserController extends Controller
     {
         //return Inertia::render('Ticket',  Ticket::findOrFail($id));
         if ($user!=null) {
-            return Inertia::render('User/Useredit',  User::findOrFail($user));
+            return Inertia::render('User/Userget',  User::findOrFail($user));
         }else{
             return response()->json([404 => 'Witout register']);
         }
@@ -51,19 +51,12 @@ class UserController extends Controller
             'email' => $request->input('email'),            
             'password' => $request->input('password'),            
         ]);
-
-        $user->save();
        
-
-        /*$validate = User::findOrFail($user);
-
-        if(!$validate){
-            $user=Success()
-        }else{
-        }*/
+        $validate = User::findOrFail($user->email);
+        dd($validate);
+        $user->save();
 
         return redirect('userget')->with('success', 'Usuario creado exitosamente');
-
     }
 
    
@@ -73,19 +66,21 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $validated = $request->validate([
+        /*$validated = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
             'file' => 'nullable|file',
-        ]);
+        ]);*/
 
-        $filePath = $request->file('file')?->store('uploads', 'public');
+       
+        $user_data = User::findOrFail($user);
+        $user_data->update($request->all());
 
-        $user->update(array_merge($validated, [
-            'file_path' => $filePath,
-        ]));
+        return Inertia::render('User/Useredit',[
+            'user_data'=>$user_data
+        ])->redirect('userget')->with('success', 'Usuario actualizado exitosamente');
 
-        return redirect()->route('post_get');
+        //return redirect('userget')->with('success', 'Usuario actualizado exitosamente');
     }
 
     /**
@@ -93,7 +88,24 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
+        //$user = User::findOrFail($id);
+
+        //$user->delete();
+        //return redirect()->route('user_get')->with('success', 'Usuario eliminado exitosamente');
+
+        if($user->delete() ){
+            /*return response()->json([
+                'message'=>'success'
+            ],204);*/
+            return redirect()->route('user_get')->with('success', 'Usuario eliminado exitosamente');
+        }
+        return response()->json([
+            'message'=>'not found'
+        ],404);
+    }
+
+    public function cancel()
+    {
         return redirect()->route('user_get');
     }
 }

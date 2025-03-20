@@ -5,7 +5,7 @@ export default function Edit({ post }) {
     const { data, setData, put, errors } = useForm({
         title: post.title,
         content: post.content,
-        file: null,
+        
     });
 
     const handleSubmit = (e) => {
@@ -32,14 +32,7 @@ export default function Edit({ post }) {
                 ></textarea>
                 {errors.content && <div>{errors.content}</div>}
             </div>
-            <div>
-                <label>File</label>
-                <input
-                    type="file"
-                    onChange={(e) => setData('file', e.target.files[0])}
-                />
-                {errors.file && <div>{errors.file}</div>}
-            </div>
+            
             <button type="submit">Update</button>
         </form>
     );
