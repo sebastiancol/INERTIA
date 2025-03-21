@@ -2,29 +2,34 @@ import React from 'react';
 import '../../../css/User.css';
 import { useForm } from "@inertiajs/react";
 
-const USEREDIT = () =>{
+const USEREDIT = ({user}) =>{
+  /*user.map((users)=>{
+  })
+  console.log(user)*/
+  
+    const { data, setData, put, processing, errors } = useForm({
+      name: "",
+      email: "",
+      password: "",
+    });
 
-    const { data, setData, post, processing, errors } = useForm({
-        name: "",
-        email: "",
-        password: "",
+    
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      put("userupdate", [user.id,user.name,user.email], {
+        onSuccess: () => {
+          alert("Usuario actualizado exitosamente");
+        },
       });
-    
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        post("userupdate/{data.id}", {
-          onSuccess: () => {
-            alert("Usuario actualizado exitosamente");
-          },
-        });
-      };
-    
-      return (
-        <div className="container">
-          
-          <div className='itemb'>
-    
-            <h2 className="form-title">EDITAR USUARIO</h2>
+    };
+  
+    return (
+      <div className="container">
+        
+        <div className='itemb'>
+  
+          <h2 className="form-title">EDITAR USUARIO</h2>
           
             <form onSubmit={handleSubmit} className="registration-form">
             <div className="mb-3">
@@ -34,7 +39,7 @@ const USEREDIT = () =>{
                 id="name"
                 name="name"
                 className="form-control"
-                value={data.name}
+                value={user.name}
                 onChange={(e) => setData("name", e.target.value)}
                 required
               />
@@ -48,7 +53,7 @@ const USEREDIT = () =>{
                 id="email"
                 name="email"
                 className="form-control"
-                value={data.email}
+                value={user.email}
                 onChange={(e) => setData("email", e.target.value)}
                 required
               />
@@ -59,10 +64,10 @@ const USEREDIT = () =>{
               <label className="form-label">Contraseña</label>
               <input
                 type="password"
-                 id="password"
+                id="password"
                 name="password"
                 className="form-control"
-                value={data.password}
+                value={user.password}
                 onChange={(e) => setData("password", e.target.value)}
                 required
               />
@@ -72,11 +77,12 @@ const USEREDIT = () =>{
             <button type="submit" className="btn btn-primary" disabled={processing}>
               Guardar
             </button>
-          </form>
-          </div>
+            </form>
           
         </div>
-      )
+        
+      </div>
+    )
 }
 
 export default USEREDIT;

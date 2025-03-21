@@ -51,7 +51,7 @@ const User = ({users}) =>{
                                             <td>
                                                 <button type="button" className="btn btn-secondary">
                                                     
-                                                    <Link href={route('user_update',user.id)} className="btn btn-primary mb-3">
+                                                    <Link href={route('user_edit',user.id)} className="btn btn-primary mb-3">
                                                        EDITAR<i className="fa fa-pencil-square" aria-hidden="true"></i>
                                                     </Link>
                                                 </button>

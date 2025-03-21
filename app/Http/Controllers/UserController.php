@@ -16,6 +16,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
+       //$users = paginate(5);
         //dd($users);
 
         return Inertia::render('User/Userget',[
@@ -27,6 +28,14 @@ class UserController extends Controller
     public function create ()
     {
         return Inertia::render('User/Usercreate');
+    }
+
+    public function edit (User $userId)
+    {
+        $user = User::findOrFail($userId);
+        return Inertia::render('User/Useredit',[
+            'user'=>$user
+        ]);
     }
 
     public function show(User $user)
@@ -52,11 +61,11 @@ class UserController extends Controller
             'password' => $request->input('password'),            
         ]);
        
-        $validate = User::findOrFail($user->email);
-        dd($validate);
+        //$validate = User::findOrFail($user->email);
+        //dd($validate);
         $user->save();
 
-        return redirect('userget')->with('success', 'Usuario creado exitosamente');
+        return redirect()->route('user_get')->with('success', 'Usuario creado exitosamente');
     }
 
    
@@ -72,15 +81,22 @@ class UserController extends Controller
             'file' => 'nullable|file',
         ]);*/
 
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+
        
-        $user_data = User::findOrFail($user);
-        $user_data->update($request->all());
+        $userData = User::findOrFail($user);
+        //$user_data->update($request->all());
+        $userData->update($request->all());
+       
 
-        return Inertia::render('User/Useredit',[
+        /*return Inertia::render('User/Useredit',[
             'user_data'=>$user_data
-        ])->redirect('userget')->with('success', 'Usuario actualizado exitosamente');
+        ]);*/
 
-        //return redirect('userget')->with('success', 'Usuario actualizado exitosamente');
+        return redirect()->route('user_get')->with('success', 'Usuario actualizado exitosamente');
     }
 
     /**
@@ -89,19 +105,23 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //$user = User::findOrFail($id);
+        $user_data = User::findOrFail($user);
 
         //$user->delete();
         //return redirect()->route('user_get')->with('success', 'Usuario eliminado exitosamente');
 
-        if($user->delete() ){
+        if($user_data ){
             /*return response()->json([
                 'message'=>'success'
             ],204);*/
+            $user_data->delete();
             return redirect()->route('user_get')->with('success', 'Usuario eliminado exitosamente');
+        }else {
+            return response()->json([
+                'message'=>'not found'
+            ],404);
         }
-        return response()->json([
-            'message'=>'not found'
-        ],404);
+        
     }
 
     public function cancel()

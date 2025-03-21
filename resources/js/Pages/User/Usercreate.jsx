@@ -14,9 +14,9 @@ const USERCREATE = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     post("userstore", {
-      onSuccess: () => {
+      /*onSuccess: () => {
         alert("Usuario creado exitosamente");
-      },
+      },*/
     });
   };
 
