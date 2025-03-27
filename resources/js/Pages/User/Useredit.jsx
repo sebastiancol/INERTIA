@@ -3,21 +3,19 @@ import '../../../css/User.css';
 import { useForm } from "@inertiajs/react";
 
 const USEREDIT = ({user}) =>{
-  /*user.map((users)=>{
-  })
-  console.log(user)*/
-  
-    const { data, setData, put, processing, errors } = useForm({
-      name: "",
-      email: "",
-      password: "",
+
+      
+    const { data, setData, post, processing, errors } = useForm({
+      name: user.name,
+      email: user.email,
+      password: user.password,
     });
 
     
   
     const handleSubmit = (e) => {
       e.preventDefault();
-      put("userupdate", [user.id,user.name,user.email], {
+      post("userupdate", user.id, {
         onSuccess: () => {
           alert("Usuario actualizado exitosamente");
         },
@@ -39,7 +37,7 @@ const USEREDIT = ({user}) =>{
                 id="name"
                 name="name"
                 className="form-control"
-                value={user.name}
+                value={data.name}
                 onChange={(e) => setData("name", e.target.value)}
                 required
               />
@@ -53,7 +51,7 @@ const USEREDIT = ({user}) =>{
                 id="email"
                 name="email"
                 className="form-control"
-                value={user.email}
+                value={data.email}
                 onChange={(e) => setData("email", e.target.value)}
                 required
               />
@@ -67,9 +65,9 @@ const USEREDIT = ({user}) =>{
                 id="password"
                 name="password"
                 className="form-control"
-                value={user.password}
+                value={data.password}
                 onChange={(e) => setData("password", e.target.value)}
-                required
+                
               />
               {errors.password && <div className="text-danger">{errors.password}</div>}
             </div>

@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::controller(UserController::class)->group( function(){
     Route::get('userget',  'index')->name('user_get');
     Route::get('usercreate','create')->name('user_create');
-    Route::get('useredit','edit')->name('user_edit');
+    Route::get('useredit/{id}','edit')->name('user_edit');
     Route::post('userstore','store')->name('user_store');
     Route::post('userupdate/{id}', 'update')->name('user_update');
     Route::post('userdelete/{id}','destroy')->name('user_delete');
