@@ -51,16 +51,16 @@ const User = ({users}) =>{
                                             <td>
                                                 <button type="button" className="btn btn-secondary">
                                                     
-                                                    <Link href={route('user_edit',user.id)} className="btn btn-primary mb-3">
+                                                    <Link href={route('user_edit',user.id)} className="">
                                                        EDITAR<i className="fa fa-pencil-square" aria-hidden="true"></i>
                                                     </Link>
                                                 </button>
                                                 
-                                                <button type="button" className="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteTicket" id="delete">
+                                                <button type="button" className="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteUser" id="delete">
                                                     ELIMINAR
                                                 </button>
                                                 
-                                                <div className="modal fade" data-animation="slideInOutLeft" aria-labelledby="modal-title" id="deleteTicket">
+                                                <div className="modal fade" data-animation="slideInOutLeft" aria-labelledby="modal-title" id="deleteUser">
                                                                                 
                                                     <div className="modal-dialog">
                                                         <div className="modal-content">
@@ -72,6 +72,7 @@ const User = ({users}) =>{
                                                                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
                                                                 <button type="button" className="btn btn-primary">
                                                                     <a className="" href={route('user_delete',user.id)}>CONFIRMAR<i className="fa fa-pencil-square" aria-hidden="true"></i></a>
+                                                                   
                                                                 </button>
                                                             </div>
                                                         </div>

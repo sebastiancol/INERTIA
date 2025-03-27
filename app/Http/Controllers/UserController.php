@@ -7,6 +7,7 @@ use App\Models\User;
 use GrahamCampbell\ResultType\Success;
 use Inertia\Inertia;
 use PhpParser\Node\Stmt\TryCatch;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -88,39 +89,33 @@ class UserController extends Controller
 
        
         $user = User::findOrFail($id);
-        //$user_data->update($request->all());
         $user->update($request->all());
        
-
-        /*return Inertia::render('User/Useredit',[
-            'user_data'=>$user_data
-        ]);*/
-
         return redirect()->route('user_get')->with('success', 'Usuario actualizado exitosamente');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //$user = User::findOrFail($id);
-        $user_data = User::findOrFail($user);
+        $user = User::findOrFail($id);
+        $user->delete();
+    
+        return redirect()->route('user_get')->with('success', 'Usuario eliminado exitosamente');
 
-        //$user->delete();
-        //return redirect()->route('user_get')->with('success', 'Usuario eliminado exitosamente');
 
-        if($user_data ){
+        /*if($user_data ){
             /*return response()->json([
                 'message'=>'success'
-            ],204);*/
+            ],204);
             $user_data->delete();
             return redirect()->route('user_get')->with('success', 'Usuario eliminado exitosamente');
         }else {
             return response()->json([
                 'message'=>'not found'
             ],404);
-        }
+        }*/
         
     }
 

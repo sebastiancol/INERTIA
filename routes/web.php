@@ -25,9 +25,9 @@ Route::controller(UserController::class)->group( function(){
     Route::get('usercreate','create')->name('user_create');
     Route::get('useredit/{id}','edit')->name('user_edit');
     Route::post('userstore','store')->name('user_store');
-    Route::post('userupdate/{id}', 'update')->name('user_update');
-    Route::post('userdelete/{id}','destroy')->name('user_delete');
-    Route::get('cancel','cancel')->name('cancel');
+    Route::put('userupdate/{id}', 'update')->name('user_update');
+    Route::get('userdelete/{id}','destroy')->name('user_delete');
+    Route::get('canceluser','cancel')->name('cancel_user');
 });
 
 Route::controller(PostController::class)->group( function(){
@@ -36,6 +36,6 @@ Route::controller(PostController::class)->group( function(){
     Route::post('poststore','store')->name('post_store');
     Route::post('postupdate/{id}', 'update')->name('post_update');
     Route::post('postdelete/{id}','destroy')->name('post_delete');
-    Route::get('cancel','cancel')->name('cancel');
+    Route::get('cancelpost','cancel')->name('cancel_post');
 });
 

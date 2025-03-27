@@ -71,8 +71,9 @@ const USERCREATE = () => {
         </div>
 
         <button type="submit" className="btn btn-primary" disabled={processing}>
-          Guardar
+          GUARDAR
         </button>
+        <a className="btn btn-danger btn-block" href={route('cancel_user')}>CANCELAR</a>
       </form>
       </div>
       
