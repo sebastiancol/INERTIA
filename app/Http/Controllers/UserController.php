@@ -55,18 +55,20 @@ class UserController extends Controller
      */
     public function store(Request $request, User $user)
     {
-        
+        $validated = $request->validate([
+            'name' => 'required|string|max:100',
+            'email' => 'required|string|max:100',
+        ]);
+
         $user = new User([
             'name' => $request->input('name'),
             'email' => $request->input('email'),            
             'password' => $request->input('password'),            
         ]);
-       
-        //$validate = User::findOrFail($user->email);
-        //dd($validate);
-        $user->save();
+               
+        $user->save($validated);
 
-        return redirect()->route('user_get')->with('success', 'Usuario creado exitosamente');
+        return redirect()->route('user_get')->with('message', 'Usuario creado exitosamente');
         
     }
 
@@ -86,19 +88,18 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->update($validated);
        
-        return redirect()->route('user_get')->with('success', 'Usuario actualizado exitosamente');
+        return redirect()->route('user_get')->with('message', 'Usuario actualizado exitosamente');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user )
+    public function destroy($id )
     {
-        dd($user);
-        //$user = User::findOrFail($id);
+        
+        $user = User::findOrFail($id);
         $user->delete();
-    
-        return redirect()->route('user_get')->with('success', 'Usuario eliminado exitosamente');
+        return redirect()->route('user_get')->with('message', 'Usuario eliminado exitosamente');
 
 
         /*if($user_data ){

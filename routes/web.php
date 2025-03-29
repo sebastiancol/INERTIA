@@ -29,7 +29,7 @@ Route::controller(UserController::class)->group( function(){
     Route::get('useredit/{id}','edit')->name('user_edit');
     Route::post('userstore','store')->name('user_store');
     Route::put('userupdate/{id}', 'update')->name('user_update');
-    Route::get('userdelete/{id}','destroy')->name('user_delete');
+    Route::delete('userdelete/{id}','destroy')->name('user_delete');
     Route::get('canceluser','cancel')->name('cancel_user');
 });
 

@@ -1,15 +1,25 @@
 import React from 'react';
 import '../../../css/User.css';
-import { Link } from "@inertiajs/react";
+import { Link,useForm, usePage } from "@inertiajs/react";
 
 
 const User = ({users}) =>{
+
+    const {flash} = usePage().props;
+
+    const { delete: eliminate} = useForm();
+
+    const handleDelete = (id) => {
+        
+        eliminate(route('user_delete',id));
+       
+    };
         
     return (
         <div className='row md-9'>
 
             <div className='col-12 mx-auto'>
-
+                {flash.message && <div>{flash.message}</div> }
                 <div className='card'>
                     <div className='card-body'>
                     <h2>LISTADO USUARIOS</h2>
@@ -55,29 +65,23 @@ const User = ({users}) =>{
                                                        EDITAR<i className="fa fa-pencil-square" aria-hidden="true"></i>
                                                     </Link>
                                                 </button>
-                                                
-                                                <button type="button" className="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deleteUser" id="delete">
+                                                <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target={`#deleteUser${user.id}`}>
                                                     ELIMINAR
                                                 </button>
-                                                
-                                                <div className="modal fade" data-animation="slideInOutLeft" aria-labelledby="modal-title" id="deleteUser">
-                                                                                
+                                                <div className="modal fade" data-animation="slideInOutLeft" aria-labelledby="modal-title" id={`deleteUser${user.id}`}>
                                                     <div className="modal-dialog">
                                                         <div className="modal-content">
-                                                        
-                                                            <div className="modal-body">
-                                                                <p>¿DESEA ELIMINAR EL USUARIO?</p>
+                                                            <div className="modal-body " >
+                                                                <p>¿DESEA ELIMINAR EL USUARIO <strong>{`${user.name}`}</strong>?</p>
                                                             </div>
                                                             <div className="modal-footer">
                                                                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
-                                                                <button type="button" className="btn btn-primary">
-                                                                    <a className="" href={route('user_delete',user.id)}>CONFIRMAR<i className="fa fa-pencil-square" aria-hidden="true"></i></a>
-                                                                   
+                                                                <button type="button" className="btn btn-primary" onClick={() => handleDelete(user.id)}>
+                                                                    CONFIRMAR <i className="fa fa-trash" aria-hidden="true"></i>
                                                                 </button>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
                                                 </div>
                                             </td>
                                         </tr>
