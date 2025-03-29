@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::latest()->get();
        //$users = paginate(5);
         //dd($users);
 
@@ -67,6 +67,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('user_get')->with('success', 'Usuario creado exitosamente');
+        
     }
 
    
@@ -76,20 +77,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        /*$validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'file' => 'nullable|file',
+        $validated = $request->validate([
+            'name' => 'required|string|max:100',
+            'email' => 'required|string|max:100',
         ]);
 
-        $request->validate([
-            'title' => 'required',
-            'content' => 'required',
-        ]);*/
-
-       
+             
         $user = User::findOrFail($id);
-        $user->update($request->all());
+        $user->update($validated);
        
         return redirect()->route('user_get')->with('success', 'Usuario actualizado exitosamente');
     }
@@ -97,9 +92,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(User $user )
     {
-        $user = User::findOrFail($id);
+        dd($user);
+        //$user = User::findOrFail($id);
         $user->delete();
     
         return redirect()->route('user_get')->with('success', 'Usuario eliminado exitosamente');

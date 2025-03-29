@@ -12,11 +12,7 @@ const USEREDIT = ({user}) =>{
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    put("userupdate", user.id, {
-      onSuccess: () => {
-        alert("Usuario actualizado exitosamente");
-      },
-    });
+    put(route('user_update',user.id));
   };
 
   return (
@@ -26,7 +22,7 @@ const USEREDIT = ({user}) =>{
 
         <h2 className="form-title">EDITAR USUARIO</h2>
         
-          <form onSubmit={handleSubmit} className="registration-form">
+          <form onSubmit={handleSubmit}  className="registration-form">
           <div className="mb-3">
             <label className="form-label">Nombre</label>
             <input

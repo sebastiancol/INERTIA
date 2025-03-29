@@ -15,9 +15,12 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
+    return inertia('User/Userget');
     return view('welcome');
-});
+});*/
+
+Route::inertia('/','User/Userget');
 
 
 Route::controller(UserController::class)->group( function(){
