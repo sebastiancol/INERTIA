@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../../css/User.css';
 import { Link,useForm, usePage } from "@inertiajs/react";
 
@@ -9,17 +9,21 @@ const User = ({users}) =>{
 
     const { delete: eliminate} = useForm();
 
+    const [flashMessage, setflashMessage] = useState(flash.message);
+
+    setTimeout(()=>{
+        setflashMessage(null)
+    }, 3000);
+
     const handleDelete = (id) => {
-        
         eliminate(route('user_delete',id));
-       
     };
         
     return (
         <div className='row md-9'>
 
             <div className='col-12 mx-auto'>
-                {flash.message && <div>{flash.message}</div> }
+                {flashMessage && <div className="alert alert-success" role="alert">{flashMessage}</div> }
                 <div className='card'>
                     <div className='card-body'>
                     <h2>LISTADO USUARIOS</h2>

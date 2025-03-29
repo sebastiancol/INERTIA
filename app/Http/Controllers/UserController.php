@@ -68,7 +68,7 @@ class UserController extends Controller
                
         $user->save($validated);
 
-        return redirect()->route('user_get')->with('message', 'Usuario creado exitosamente');
+        return redirect()->route('user_get')->with('message', "$user->name creado exitosamente");
         
     }
 
@@ -88,7 +88,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->update($validated);
        
-        return redirect()->route('user_get')->with('message', 'Usuario actualizado exitosamente');
+        return redirect()->route('user_get')->with('message', "$user->name actualizado exitosamente");
     }
 
     /**
@@ -99,7 +99,7 @@ class UserController extends Controller
         
         $user = User::findOrFail($id);
         $user->delete();
-        return redirect()->route('user_get')->with('message', 'Usuario eliminado exitosamente');
+        return redirect()->route('user_get')->with('message', "$user->name  eliminado exitosamente");
 
 
         /*if($user_data ){
