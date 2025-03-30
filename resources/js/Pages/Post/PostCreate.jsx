@@ -5,52 +5,48 @@ export default function Create() {
     const { data, setData, post, errors } = useForm({
         title: '',
         content: '',
-        file: null,
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post('/postget');
+        post("poststore", {
+            /*onSuccess: () => {
+              alert("Usuario creado exitosamente");
+            },*/
+        });
     };
 
     return (
         <div className=''>
             <form onSubmit={handleSubmit}>
-            <div className=''>
-                <label>Title</label>
-                <input
-                    id="title"
-                    type="text"
-                    className="form-control"
-                    value={data.title}
-                    onChange={(e) => setData('title', e.target.value)}
-                    placeholder="Titulo"
-                    pattern="[A,Z],[a,z]"
-                    required
-                />
-                {errors.title && <div>{errors.title}</div>}
-            </div>
-            <div className=''>
-                <label htmlFor="description" className="form-label">Description</label>
-                <textarea
-                    id="description"
-                    className="form-control"
-                    value={data.content}
-                    onChange={(e) => setData('content', e.target.value)}
-                    placeholder="Descripcion"
-                    required
-                ></textarea>
-                {errors.content && <div>{errors.content}</div>}
-            </div>
-            <div className=''>
-                <label>File</label>
-                <input
-                    type="file"
-                    onChange={(e) => setData('file', e.target.files[0])}
-                />
-                {errors.file && <div>{errors.file}</div>}
-            </div>
-            <button type="submit">Create</button>
+                <div className=''>
+                    <label htmlFor="description" className="form-label">Title</label>
+                    <input
+                        id="title"
+                        type="text"
+                        className="form-control"
+                        value={data.title}
+                        onChange={(e) => setData('title', e.target.value)}
+                        placeholder="Titulo"
+                        pattern="[A,Z],[a,z]"
+                        required
+                    />
+                    {errors.title && <div>{errors.title}</div>}
+                </div>
+                <div className=''>
+                    <label htmlFor="description" className="form-label">Description</label>
+                    <textarea
+                        id="description"
+                        className="form-control"
+                        value={data.content}
+                        onChange={(e) => setData('content', e.target.value)}
+                        placeholder="Descripcion"
+                        required
+                    ></textarea>
+                    {errors.content && <div>{errors.content}</div>}
+                </div>
+                
+                <button type="submit">Create</button>
             </form>
         </div>
         

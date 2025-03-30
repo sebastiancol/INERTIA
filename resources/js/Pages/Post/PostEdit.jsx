@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { useForm } from '@inertiajs/react';
 
 export default function Edit({ post }) {
+    
     const { data, setData, put, errors } = useForm({
         title: post.title,
         content: post.content,
-        
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        put(`/posts/${post.id}`);
+        put(route('user_update',user.id));
     };
 
     return (

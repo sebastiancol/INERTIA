@@ -36,6 +36,7 @@ Route::controller(UserController::class)->group( function(){
 Route::controller(PostController::class)->group( function(){
     Route::get('postget',  'index')->name('post_get');
     Route::get('postcreate','create')->name('post_create');
+    Route::get('postedit/{id}','edit')->name('post_edit');
     Route::post('poststore','store')->name('post_store');
     Route::post('postupdate/{id}', 'update')->name('post_update');
     Route::post('postdelete/{id}','destroy')->name('post_delete');

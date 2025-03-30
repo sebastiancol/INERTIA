@@ -13,8 +13,10 @@ class PostController extends Controller
      */
     public function index()
     {
+        $post = Post::latest()->get();
         return Inertia::render('Post/PostGet', [
-            'posts' => Post::all(),
+            //'posts' => Post::all(),
+            'post'=> $post
         ]);
     }
 
@@ -26,6 +28,19 @@ class PostController extends Controller
         return Inertia::render('Post/PostCreate');
     }
 
+    
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit($id)
+    {
+        $post = Post::findOrFail($id);
+        return Inertia::render('Post/PostEdit', [
+            'post' => $post
+        ]);
+    }
+
+
     /**
      * Store a newly created resource in storage.
      */
@@ -34,55 +49,48 @@ class PostController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
-            'file' => 'nullable|file',
+            
         ]);
 
-        $filePath = $request->file('file')?->store('uploads', 'public');
-
-        Post::create(array_merge($validated, [
-            'file_path' => $filePath,
-        ]));
-
-        return redirect()->route('post_get');
-    }
-
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Post $post)
-    {
-        return Inertia::render('Post/PostEdit', [
-            'post' => $post,
+        $post = new Post([
+            'title' => $request->input('name'),
+            'content' => $request->input('email'),            
         ]);
+               
+        $post->save($validated);
+
+        return redirect()->route('post_get')->with('message', "$post->id creado exitosamente");
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
-            'file' => 'nullable|file',
+            
         ]);
-
-        $filePath = $request->file('file')?->store('uploads', 'public');
-
-        $post->update(array_merge($validated, [
-            'file_path' => $filePath,
-        ]));
-
-        return redirect()->route('post_get');
+             
+        $post = Post::findOrFail($id);
+        $post->update($validated);
+        return redirect()->route('post_get')->with('message', "$post->id actualizado exitosamente");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
+        $post = Post::findOrFail($id);
         $post->delete();
+        return redirect()->route('post_get')->with('message', "$post->id  eliminado exitosamente");
+    }
+
+    public function cancel()
+    {
         return redirect()->route('post_get');
     }
 }
