@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useForm } from '@inertiajs/react';
 
 export default function Create() {
-    const { data, setData, post, errors } = useForm({
-        title: '',
-        content: '',
+    const { data, setData, post, processing, errors} = useForm({
+        title: "",
+        content: "",
     });
 
     const handleSubmit = (e) => {
@@ -18,25 +18,29 @@ export default function Create() {
 
     return (
         <div className=''>
-            <form onSubmit={handleSubmit}>
+
+            <h2 className="form-title">CREAR PUBLICACION</h2>
+            <form onSubmit={handleSubmit} className="registration-form">
                 <div className=''>
-                    <label htmlFor="description" className="form-label">Title</label>
+                    <label className="form-label">Title</label>
                     <input
                         id="title"
+                        name="title"
                         type="text"
                         className="form-control"
                         value={data.title}
                         onChange={(e) => setData('title', e.target.value)}
                         placeholder="Titulo"
-                        pattern="[A,Z],[a,z]"
                         required
                     />
                     {errors.title && <div>{errors.title}</div>}
                 </div>
                 <div className=''>
-                    <label htmlFor="description" className="form-label">Description</label>
+                    <label className="form-label">Description</label>
                     <textarea
-                        id="description"
+                        id="content"
+                        name="content"
+                        type="text"
                         className="form-control"
                         value={data.content}
                         onChange={(e) => setData('content', e.target.value)}
@@ -46,7 +50,10 @@ export default function Create() {
                     {errors.content && <div>{errors.content}</div>}
                 </div>
                 
-                <button type="submit">Create</button>
+                <button type="submit" className="btn btn-primary" disabled={processing}>
+                    GUARDAR
+                </button>
+                <a className="btn btn-danger btn-block" href={route('cancel_post')}>CANCELAR</a>
             </form>
         </div>
         

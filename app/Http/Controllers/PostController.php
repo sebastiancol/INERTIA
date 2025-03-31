@@ -44,17 +44,17 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
+            'title' => 'required|string|max:100',
+            'content' => 'required|string|max:100',
             
         ]);
 
         $post = new Post([
-            'title' => $request->input('name'),
-            'content' => $request->input('email'),            
+            'title' => $request->input('title'),
+            'content' => $request->input('content'),            
         ]);
                
         $post->save($validated);
