@@ -6,7 +6,8 @@
     @routes
     @viteReactRefresh
     @inertiaHead
-    @vite(['resources/js/app.jsx'])
+    @vite(['resources/js/app.jsx',
+    'resources/sass/app.scss'])
     
   </head>
   <body>

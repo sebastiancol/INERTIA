@@ -43,3 +43,7 @@ Route::controller(PostController::class)->group( function(){
     Route::get('cancelpost','cancel')->name('cancel_post');
 });
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
