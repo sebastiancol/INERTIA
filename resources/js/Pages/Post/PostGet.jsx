@@ -23,42 +23,84 @@ const Post =  ({post}) =>  {
         <div className='row md-9'>
 
             <div className='col-12 mx-auto'>
-                <div className='row md-6'>
-                    <h2>PUBLICACIONES</h2>
-                    <form  method="GET">
-                        <div className="form-control ">
-                        <input type="text" className="form-control"  name="busqueda" placeholder="buscar usuario" />
-                        <br/>
-                        <input type="submit" className="btn btn-primary" name="buscador"/>
-                        </div>
-                    </form>
-                    <button type="button" className="btn btn-create" >
-                                                
-                        <Link href={route('post_create')} className="">
-                            Crear Post
-                        </Link>
-                        
-                    </button>    
-                </div>   
+            
                 <div className='card'>
 
-                    <div className="card-header">
-                        <h1>TITULO</h1>
-                    </div>
-                    <div className="card-body">
-                        <h1>MENSAJE</h1>
-                        <button type="button" className="btn btn-primary btn-">
-                            <Link href={route('post_edit',post.id)} className="">
-                                EDITAR<i className="fa fa-pencil-square" aria-hidden="true"></i>
+                    <div className='row md-6'>
+                        <h2>PUBLICACIONES</h2>
+                        <form  method="GET">
+                            <div className="form-control ">
+                            <input type="text" className="form-control"  name="busqueda" placeholder="buscar usuario" />
+                            <br/>
+                            <input type="submit" className="btn btn-primary" name="buscador"/>
+                            </div>
+                        </form>
+                        <button type="button" className="btn btn-create" >
+                                                    
+                            <Link href={route('post_create')} className="">
+                                Crear Post
                             </Link>
-                        </button>
-                                
-                        <button type="button" className="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#deletePost" id="delete">
-                            ELIMINAR
-                        </button>
-                                
-                        
+                            
+                        </button>    
                     </div>
+
+                    <div className='row md-6'>
+
+                        <div className="card-body">
+                            
+                            <table className='table text-center text-uppercase table-bordered'>
+                                <thead>
+                                    <tr>
+                                        
+                                        <th>TITULO</th>
+                                        <th>MENSAJE</th>
+                                        <th>FECHA_CREACION</th>
+                                        <th>FECHA_ACTUALIZACION</th>
+                                        <th scope="col">OPERACIONES</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {post.map((posts,element)=>(
+
+                                        <tr key={element}>
+                                            <td>{posts.title}</td>
+                                            <td>{posts.content}</td>
+                                            <td>{posts.created_at = Date().toLocaleString() }</td>
+                                            <td>{posts.updated_at = Date().toLocaleString()}</td>
+                                            <td>
+                                                <button type="button" className="btn btn-secondary">
+                                                    
+                                                    <Link href={route('post_edit',posts.id)} className="">
+                                                        EDITAR<i className="fa fa-pencil-square" aria-hidden="true"></i>
+                                                    </Link>
+                                                </button>
+                                                <button type="button" className="btn btn-danger" data-bs-toggle="modal" data-bs-target={`#deleteUser${posts.id}`}>
+                                                    ELIMINAR
+                                                </button>
+                                                <div className="modal fade" data-animation="slideInOutLeft" aria-labelledby="modal-title" id={`deleteUser${posts.id}`}>
+                                                    <div className="modal-dialog">
+                                                        <div className="modal-content">
+                                                            <div className="modal-body " >
+                                                                <p>¿DESEA ELIMINAR EL POST <strong>{`${posts.title}`}</strong>?</p>
+                                                            </div>
+                                                            <div className="modal-footer">
+                                                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
+                                                                <button type="button" className="btn btn-primary" onClick={() => handleDelete(posts.id)}>
+                                                                    CONFIRMAR <i className="fa fa-trash" aria-hidden="true"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>       
+                    
                 </div>
             
             </div>

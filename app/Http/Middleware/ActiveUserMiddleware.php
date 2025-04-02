@@ -24,7 +24,8 @@ class ActiveUserMiddleware
         $user = Auth::user();
 
         if (!$user->status) {
-            return response()->json(['message' => 'Cuenta desactivada'], 403);
+            //response()->json(['message' => 'Cuenta desactivada'], 403);
+            return redirect()->route('post_get');
         }
 
         return $next($request);

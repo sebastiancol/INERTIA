@@ -26,7 +26,7 @@ const User = ({users}) =>{
                 {flashMessage && <div className="alert alert-success" role="alert">{flashMessage}</div> }
                 <div className='card'>
                     <div className='card-body'>
-                    <h2>LISTADO USUARIOS</h2>
+                        <h2>LISTADO USUARIOS</h2>
                         <div className='row md-6'>
                             <form  method="GET">
                                 <div className="form-control ">
