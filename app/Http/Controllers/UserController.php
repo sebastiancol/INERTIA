@@ -121,4 +121,13 @@ class UserController extends Controller
     {
         return redirect()->route('user_get');
     }
+
+    public function toggleStatus($id)
+    {
+        $user = User::findOrFail($id);
+        $user->status = !$user->status;
+        $user->save();
+
+        return response()->json(['message' => 'Estado actualizado', 'user' => $user]);
+    }
 }

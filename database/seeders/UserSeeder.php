@@ -18,6 +18,8 @@ class UserSeeder extends Seeder
             'name' =>'andres',
             'email' =>'andres@gmail.com',
             'password' =>PASSWORD_BCRYPT,
+            'role'=> 'admin',
+            'status'=>true,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -25,6 +27,8 @@ class UserSeeder extends Seeder
             'name' =>'carlos',
             'email' =>'carlos@gmail.com',
             'password' =>PASSWORD_BCRYPT,
+            'role'=> 'user',
+            'status'=>true,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -32,6 +36,8 @@ class UserSeeder extends Seeder
             'name' =>'andrea',
             'email' =>'andrea@gmail.com',
             'password' =>PASSWORD_BCRYPT,
+            'role'=> 'user',
+            'status'=>true,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);

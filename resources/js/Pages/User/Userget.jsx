@@ -53,6 +53,8 @@ const User = ({users}) =>{
                                         
                                         <th>NOMBRES</th>
                                         <th>CORREO</th>
+                                        <th>ROL</th>
+                                        <th>ESTADO</th>
                                         <th scope="col">OPERACIONES</th>
                                     </tr>
                                 </thead>
@@ -62,6 +64,8 @@ const User = ({users}) =>{
                                         <tr key={element}>
                                             <td>{user.name}</td>
                                             <td>{user.email}</td>
+                                            <td>{user.role}</td>
+                                            <td>{user.status ? "Activo" : "Inactivo"}</td>
                                             <td>
                                                 <button type="button" className="btn btn-secondary">
                                                     
