@@ -10,9 +10,7 @@ export default function Create() {
     const handleSubmit = (e) => {
         e.preventDefault();
         post("poststore", {
-            /*onSuccess: () => {
-              alert("Usuario creado exitosamente");
-            },*/
+            
         });
     };
 

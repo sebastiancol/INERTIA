@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../../../css/User.css';
 import { useForm } from '@inertiajs/react';
 
 export default function Edit({ post }) {

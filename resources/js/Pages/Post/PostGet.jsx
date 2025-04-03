@@ -54,6 +54,7 @@ const Post =  ({post}) =>  {
                                         
                                         <th>TITULO</th>
                                         <th>MENSAJE</th>
+                                        <th>CREADO POR </th>
                                         <th>FECHA_CREACION</th>
                                         <th>FECHA_ACTUALIZACION</th>
                                         <th scope="col">OPERACIONES</th>
@@ -65,6 +66,7 @@ const Post =  ({post}) =>  {
                                         <tr key={element}>
                                             <td>{posts.title}</td>
                                             <td>{posts.content}</td>
+                                            <td>{posts.user_id}</td>
                                             <td>{posts.created_at = Date().toLocaleString() }</td>
                                             <td>{posts.updated_at = Date().toLocaleString()}</td>
                                             <td>

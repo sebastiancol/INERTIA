@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class PostController extends Controller
@@ -13,7 +14,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        $post = Post::latest()->get();
+        $user = Auth::user();
+       
+        
+        $post = Post::with('user:id,name')->latest()->get();
+        //dd($post);
         return Inertia::render('Post/PostGet', [
             //'posts' => Post::all(),
             'post'=> $post
@@ -46,17 +51,22 @@ class PostController extends Controller
      */
     public function store(Request $request, Post $post)
     {
+        
         $validated = $request->validate([
             'title' => 'required|string|max:100',
-            'content' => 'required|string|max:100',
-            
+            'content' => 'required|string|max:100',            
         ]);
+      
+        $user = auth()->user(); 
 
         $post = new Post([
             'title' => $request->input('title'),
-            'content' => $request->input('content'),            
+            'content' => $request->input('content'),  
+            //'title' => $validated['title'],
+            //'content' => $validated['content'],
+            'user_id'=> $user->id         
         ]);
-               
+             
         $post->save($validated);
 
         return redirect()->route('post_get')->with('message', "$post->id creado exitosamente");
