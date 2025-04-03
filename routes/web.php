@@ -46,6 +46,7 @@ Route::inertia('/','login');
         Route::get('postcreate','create')->name('post_create');
         Route::get('postedit/{id}','edit')->name('post_edit');
         Route::post('poststore','store')->name('post_store');
+        //Route::get('postshow/{id}','show')->name('post_show');
         Route::put('postupdate/{id}', 'update')->name('post_update');
         Route::delete('postdelete/{id}','destroy')->name('post_delete');
         Route::get('cancelpost','cancel')->name('cancel_post');

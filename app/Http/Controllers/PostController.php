@@ -15,12 +15,8 @@ class PostController extends Controller
     public function index()
     {
         $user = Auth::user();
-       
-        
-        $post = Post::with('user:id,name')->latest()->get();
-        //dd($post);
+        $post = Post::where('user_id',"$user->id")->latest()->get();
         return Inertia::render('Post/PostGet', [
-            //'posts' => Post::all(),
             'post'=> $post
         ]);
     }
@@ -62,8 +58,6 @@ class PostController extends Controller
         $post = new Post([
             'title' => $request->input('title'),
             'content' => $request->input('content'),  
-            //'title' => $validated['title'],
-            //'content' => $validated['content'],
             'user_id'=> $user->id         
         ]);
              
@@ -71,7 +65,6 @@ class PostController extends Controller
 
         return redirect()->route('post_get')->with('message', "$post->id creado exitosamente");
     }
-
 
     /**
      * Update the specified resource in storage.
