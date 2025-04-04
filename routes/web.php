@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Auth;
 Route::inertia('/','login');
 
 
-//Route::middleware(['auth:sanctum'])->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::controller(UserController::class)->group( function(){
         Route::get('userget',  'index')->name('user_get');
@@ -36,10 +36,10 @@ Route::inertia('/','login');
         Route::get('canceluser','cancel')->name('cancel_user');
     });
 
-//});
+});
 
 
-//Route::middleware(['active'])->group(function () {
+Route::middleware(['active'])->group(function () {
 
     Route::controller(PostController::class)->group( function(){
         Route::get('postget',  'index')->name('post_get');
@@ -53,7 +53,7 @@ Route::inertia('/','login');
     });
     
 
-//});
+});
 
 
 

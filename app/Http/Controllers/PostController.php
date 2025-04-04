@@ -15,10 +15,20 @@ class PostController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $post = Post::where('user_id',"$user->id")->latest()->get();
-        return Inertia::render('Post/PostGet', [
-            'post'=> $post
-        ]);
+        
+        if(!$user)
+        {
+            $post = Post::all();
+            return Inertia::render('Post/PostGet', [
+                'post'=> $post
+            ]);
+        }else{
+
+            $post = Post::where('user_id',"$user->id")->latest()->get();
+            return Inertia::render('Post/PostGet', [
+                'post'=> $post
+            ]);
+        }
     }
 
     /**
@@ -35,6 +45,14 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+        /*$user = Auth::user();
+        if($user!=$id)
+        {
+
+        }
+        else{
+
+        }*/
         $post = Post::findOrFail($id);
         return Inertia::render('Post/PostEdit', [
             'post' => $post

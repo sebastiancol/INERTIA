@@ -18,6 +18,8 @@ const Post =  ({post}) =>  {
         eliminate(route('post_delete',id));
     };
 
+    let button = document.getElementById('edit');
+
     return (
         <div className='row md-9'>
 
@@ -51,7 +53,6 @@ const Post =  ({post}) =>  {
                                                 
                                                 <th>TITULO</th>
                                                 <th>MENSAJE</th>
-                                                <th>CREADO POR </th>
                                                 <th>FECHA_CREACION</th>
                                                 <th>FECHA_ACTUALIZACION</th>
                                                 <th scope="col">OPERACIONES</th>
@@ -63,11 +64,11 @@ const Post =  ({post}) =>  {
                                                 <tr key={element}>
                                                     <td>{posts.title}</td>
                                                     <td>{posts.content}</td>
-                                                    <td>{posts.user_id}</td>
                                                     <td>{posts.created_at = Date().toLocaleString() }</td>
                                                     <td>{posts.updated_at = Date().toLocaleString()}</td>
                                                     <td>
-                                                        <button type="button" className="btn btn-secondary">
+                                                        { /*!posts.user_id ? button.setAttribute('disabled', '') : button.removeAttribute('disable')*/  }                                                       
+                                                        <button type="button" className="btn btn-secondary" id='edit' >
                                                             
                                                             <Link href={route('post_edit',posts.id)} className="">
                                                                 EDITAR<i className="fa fa-pencil-square" aria-hidden="true"></i>
